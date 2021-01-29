@@ -216,8 +216,7 @@ function testDeleteDirectory() {
 
 @test:Config {enable: true}
 function testdeleteShare() {
-    RequestParameterList parameterList = {fileShareName: "wso2fileshare"};
-    var result = azureClient->deleteShare(parameterList);
+    var result = azureClient->deleteShare("wso2fileshare");
     if (result is boolean) {
         test:assertTrue(result, "Operation Failed");
     } else {

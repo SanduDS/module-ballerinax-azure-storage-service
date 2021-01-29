@@ -123,10 +123,10 @@ public client class AzureFileShareClient {
 
     # Deletes the share and any files and directories that it contains.
     #
-    # + parameterList - RequestParameterList record with detail to be used to delete the share.
+    # + fileShareName - Name of the fileshare to be deleted
     # + return - Return Value Description
-    remote function deleteShare(RequestParameterList parameterList) returns @tainted boolean|error {
-        string requestPath = SLASH + parameterList.fileShareName + QUESTION_MARK + CREATE_GET_DELETE_SHARE + AMPERSAND + 
+    remote function deleteShare(string fileShareName) returns @tainted boolean|error {
+        string requestPath = SLASH + fileShareName + QUESTION_MARK + CREATE_GET_DELETE_SHARE + AMPERSAND + 
         self.sasToken;
         http:Response response = <http:Response>check self.httpClient->delete(requestPath, ());
         if (response.statusCode == ACCEPTED) {
@@ -206,7 +206,9 @@ public client class AzureFileShareClient {
 
     # Creates a directory in the share or parent directory.
     #
-    # + parameterList - RequestParameterList record with detail to be used to create a directory.
+    # + fileShareName - Name of the fileshare
+    # + newDirectoryName - New directory name
+    # + azureDirectoryPath - Directory path of the azure fileshare
     # + return - If success, returns true, else returns error.
     remote function createDirectory(string fileShareName, string newDirectoryName, 
                                     string? azureDirectoryPath = ()) returns @tainted boolean|error {
