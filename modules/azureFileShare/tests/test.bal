@@ -55,7 +55,7 @@ FileServicePropertiesList fileService = {StorageServiceProperties: storageServic
 function testSetFileServiceProperties() {
     var result = azureClient->setFileServiceProperties(fileService);
     if (result is boolean) {
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -64,10 +64,10 @@ function testSetFileServiceProperties() {
 @test:Config {enable: true}
 function testCreateShare() {
 
-    RequestParameterList parameterList = {fileShareName: "wso2fileshare"};
-    var result = azureClient->createShare(parameterList);
+    //RequestParameterList parameterList = {fileShareName: "wso2fileshare"};
+    var result = azureClient->createShare("wso2fileshare");
     if (result is boolean) {
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -98,7 +98,7 @@ function testcreateDirectory() {
     };
     var result = azureClient->createDirectory(fileShareName = "wso2fileshare", newDirectoryName = "wso2DirectoryTest");
     if (result is boolean) {
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -108,7 +108,7 @@ function testcreateDirectory() {
 function testgetDirectoryList() {
     var result = azureClient->getDirectoryList(fileShareName = "wso2fileshare");
     if (result is DirecotyList) {
-        test:assertTrue(true, "Sucess");
+        test:assertTrue(true, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -119,7 +119,7 @@ function testCreateFile() {
     var result = azureClient->createFile(fileShareName = "wso2fileshare", azureFileName = "test.txt", fileSizeInByte = 8, 
     azureDirectoryPath = "");
     if (result is boolean) {
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -129,7 +129,7 @@ function testCreateFile() {
 function testgetFileList() {
     var result = azureClient->getFileList(fileShareName = "wso2fileshare", maxResult = 3);
     if (result is FileList) {
-        test:assertTrue(true, "Sucess");
+        test:assertTrue(true, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -152,7 +152,7 @@ function testDirectUpload() {
     localFilePath = "modules/azureFileShare/tests/resources/song.mp3", azureFileName = "song1.mp3");
     if (result is boolean) {
         io:println(result);
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -162,7 +162,7 @@ function testDirectUpload() {
 function testListRange() {
     var result = azureClient->listRange(fileShareName = "wso2fileshare", fileName = "test.txt");
     if (result is RangeList) {
-        test:assertTrue(true, "Sucess");
+        test:assertTrue(true, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -173,7 +173,7 @@ function testgetFile() {
     var result = azureClient->getFile(fileShareName = "wso2fileshare", fileName = "test.txt",
     localFilePath = "modules/azureFileShare/tests/resources/test_new.txt");
     if (result is boolean) {
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -185,7 +185,7 @@ function testCopyFile() {
     destDirectoryPath = "wso2DirectoryTest", 
     sourceURL = "https://filesharetestwso2.file.core.windows.net/wso2fileshare/test.txt");
     if (result is boolean) {
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -195,7 +195,7 @@ function testCopyFile() {
 function testDeleteFile() {
     var result = azureClient->deleteFile(fileShareName = "wso2fileshare", fileName = "test.txt");
     if (result is boolean) {
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -208,7 +208,7 @@ function testDeleteDirectory() {
     var result = azureClient->deleteDirectory(fileShareName = "wso2fileshare", directoryName = "wso2DirectoryTest");
     if (result is boolean) {
 
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }
@@ -219,7 +219,7 @@ function testdeleteShare() {
     RequestParameterList parameterList = {fileShareName: "wso2fileshare"};
     var result = azureClient->deleteShare(parameterList);
     if (result is boolean) {
-        test:assertTrue(result, "Sucess");
+        test:assertTrue(result, "Operation Failed");
     } else {
         test:assertFail(msg = result.toString());
     }

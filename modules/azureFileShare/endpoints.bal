@@ -91,10 +91,10 @@ public client class AzureFileShareClient {
 
     # Creates a new share in a storage account.
     #
-    # + parameterList - RequestParameterList record with detail to be used to create a new share.
+    # + fileShareName - Unique name of the fileshare to be created.
     # + return - If success, returns true, else returns error.
-    remote function createShare(RequestParameterList parameterList) returns @tainted boolean|error {
-        string requestPath = SLASH + parameterList.fileShareName + QUESTION_MARK + CREATE_GET_DELETE_SHARE + AMPERSAND + 
+    remote function createShare(string fileShareName) returns @tainted boolean|error {
+        string requestPath = SLASH + fileShareName + QUESTION_MARK + CREATE_GET_DELETE_SHARE + AMPERSAND + 
         self.sasToken;
         http:Response response = <http:Response>check self.httpClient->put(requestPath, ());
         if (response.statusCode == CREATED) {
