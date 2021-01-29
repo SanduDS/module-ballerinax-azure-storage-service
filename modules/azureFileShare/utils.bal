@@ -57,9 +57,7 @@ isolated function convertRecordToXml(anydata recordContent) returns @tainted xml
 # + response - Receievd xml response.
 # + return - Returns error message as a string value.
 isolated function getErrorMessage(http:Response response) returns @tainted string {
-    xml responseBody = <xml>response.getXmlPayload();
-    xml reason = responseBody;
-    return reason.toString();
+    return (response.getXmlPayload().toString() + ", Azure Status Code:" + response.statusCode.toString());
 }
 
 # Writes the file content to the local destination.

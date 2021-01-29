@@ -53,7 +53,7 @@ public client class AzureFileShareClient {
             json jsonValue = check jsonlib:fromXML(formattedXML);
             return <SharesList>check jsonValue.cloneWithType(SharesList);
         } else {
-            fail error(response.getXmlPayload().toString() + ", Azure Status Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -69,7 +69,7 @@ public client class AzureFileShareClient {
             json jsonValue = check jsonlib:fromXML(formattedXML);
             return <FileServicePropertiesList>check jsonValue.cloneWithType(FileServicePropertiesList);
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -85,7 +85,7 @@ public client class AzureFileShareClient {
         if (response.statusCode == ACCEPTED) {
             return true;
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -100,7 +100,7 @@ public client class AzureFileShareClient {
         if (response.statusCode == CREATED) {
             return true;
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -117,7 +117,7 @@ public client class AzureFileShareClient {
             json jsonValue = check jsonlib:fromXML(formattedXML);
             return <FileServicePropertiesList>check jsonValue.cloneWithType(FileServicePropertiesList);
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -132,7 +132,7 @@ public client class AzureFileShareClient {
         if (response.statusCode == ACCEPTED) {
             return true;
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -166,7 +166,7 @@ public client class AzureFileShareClient {
             json convertedJsonContent = check jsonlib:fromXML(formattedXML);
             return <DirecotyList>check convertedJsonContent.cloneWithType(DirecotyList);
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -200,7 +200,7 @@ public client class AzureFileShareClient {
             json convertedJsonContent = check jsonlib:fromXML(formattedXML);
             return <FileList>check convertedJsonContent.cloneWithType(FileList);
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -224,7 +224,7 @@ public client class AzureFileShareClient {
         if (response.statusCode == CREATED) {
             return true;
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -243,7 +243,7 @@ public client class AzureFileShareClient {
         if (response.statusCode == ACCEPTED) {
             return true;
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -294,7 +294,7 @@ public client class AzureFileShareClient {
             json convertedJsonContent = check jsonlib:fromXML(responseBody);
             return <RangeList>check convertedJsonContent.cloneWithType(RangeList);
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -314,7 +314,7 @@ public client class AzureFileShareClient {
         if (response.statusCode == ACCEPTED) {
             return true;
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+            fail error(getErrorMessage(response));
         }
     }
 
@@ -337,7 +337,7 @@ public client class AzureFileShareClient {
             }
             return writeFile(localFilePath, responseBody);
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+           fail error(getErrorMessage(response));
         }
     }
 
@@ -357,7 +357,7 @@ public client class AzureFileShareClient {
         if (response.statusCode == ACCEPTED) {
             return true;
         } else {
-            fail error(response.getXmlPayload().toString() + " Azure Statue Code:" + response.statusCode.toString());
+           fail error(getErrorMessage(response));
         }
     }
 
